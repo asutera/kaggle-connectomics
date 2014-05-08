@@ -30,7 +30,7 @@ if __name__ == "__main__":
                                                  'modelling')
     parser.add_argument('-f', '--fluorescence', type=str, required=True,
                         help='Path to the fluorescence file')
-    parser.add_argument('-p', '--position', type=str, required=True,
+    parser.add_argument('-p', '--position', type=str, required=False,
                         help='Path to the network position file')
     parser.add_argument('-o', '--output', type=str, required=True,
                         help='Path of the output/prediction file')
