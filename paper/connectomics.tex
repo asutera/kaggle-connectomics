@@ -1,0 +1,109 @@
+ %\documentclass[wcp,gray]{jmlr} % test grayscale version
+\documentclass[wcp]{jmlr}
+
+ % The following packages will be automatically loaded:
+ % amsmath, amssymb, natbib, graphicx, url, algorithm2e
+
+ %\usepackage{rotating}% for sideways figures and tables
+\usepackage{longtable}% for long tables
+
+ % The booktabs package is used by this sample document
+ % (it provides \toprule, \midrule and \bottomrule).
+ % Remove the next line if you don't require it.
+\usepackage{booktabs}
+ % The siunitx package is used by this sample document
+ % to align numbers in a column by their decimal point.
+ % Remove the next line if you don't require it.
+\usepackage[load-configurations=version-1]{siunitx} % newer version
+ %\usepackage{siunitx}
+\usepackage[utf8]{inputenc}
+
+ % The following command is just for this sample document:
+\newcommand{\cs}[1]{\texttt{\char`\\#1}}
+
+% % Define an unnumbered theorem just for this sample document:
+%\theorembodyfont{\upshape}
+%\theoremheaderfont{\scshape}
+%\theorempostheader{:}
+%\theoremsep{\newline}
+%\newtheorem*{note}{Note}
+
+ % change the arguments, as appropriate, in the following:
+\jmlrvolume{1}
+\jmlryear{2010}
+\jmlrworkshop{Neural Connectomics Workshop}
+
+\title[Connectomics challenge]{A solution to neural network inference.}
+
+ % Use \Name{Author Name} to specify the name.
+ % If the surname contains spaces, enclose the surname
+ % in braces, e.g. \Name{John {Smith Jones}} similarly
+ % if the name has a "von" part, e.g \Name{Jane {de Winter}}.
+ % If the first letter in the forenames is a diacritic
+ % enclose the diacritic in braces, e.g. \Name{{\'E}louise Smith}
+
+ % Two authors with the same address
+%  \author{\Name{Author Name1\nametag{\thanks{with a note}}} \Email{abc@sample.com}\and
+%   \Name{Author Name2} \Email{xyz@sample.com}\\
+%   \addr Address}
+
+ % Three or more authors with the same address:
+ \author{\Name{Antonio Sutera} \Email{a.sutera@ulg.ac.be}\\
+   \Name{Zixiao Qiu} \Email{zqiu@ulg.ac.be}\\
+  \Name{Vincent François-Lavet} \Email{v.francois@ulg.ac.be}\\
+  \Name{Arnaud Joly} \Email{a.joly@ulg.ac.be}\\
+  \Name{Gilles Louppe} \Email{g.louppe@ulg.ac.be}\\
+ % \Name{Author Name6} \Email{an6@sample.com}\\
+ %  \Name{Author Name7} \Email{an7@sample.com}\\
+ %  \Name{Author Name8} \Email{an8@sample.com}\\
+ %  \Name{Author Name9} \Email{an9@sample.com}\\
+ %  \Name{Author Name10} \Email{an10@sample.com}\\
+ %  \Name{Author Name11} \Email{an11@sample.com}\\
+ %  \Name{Author Name12} \Email{an12@sample.com}\\
+ %  \Name{Author Name13} \Email{an13@sample.com}\\
+ %  \Name{Author Name14} \Email{an14@sample.com}\\
+   \addr Systems and Modeling, Dept. of EE and CS \& GIGA-R, University of Liège, Belgium}
+
+
+ % Authors with different addresses:
+ % \author{\Name{Author Name1} \Email{abc@sample.com}\\
+ % \addr Address 1
+ % \AND
+ % \Name{Author Name2} \Email{xyz@sample.com}\\
+ % \addr Address 2
+ %}
+
+\editor{Editor's name}
+ % \editors{List of editors' names}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is the abstract for this article.
+\end{abstract}
+\begin{keywords}
+List of keywords
+\end{keywords}
+\cite{*}
+\section{Introduction}
+\label{sec:intro}
+\section{Motivation \& objectives}
+\section{Winning method}
+\section{Results}
+\section{Discussion on the evaluation metric}
+\section{Comparison with other methods}
+
+
+
+\bibliography{jmlr-sample}
+
+\appendix
+
+\section{First Appendix}\label{apd:first}
+
+This is the first appendix.
+
+
+\end{document}
