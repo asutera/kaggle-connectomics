@@ -1,11 +1,10 @@
 Kaggle Connectomics
 ===================
 
-
+Team AAAGC (#1). 
 
 Contact
 -------
-
 
 - Antonio Sutera <a.sutera@ulg.ac.be>
 - Arnaud Joly <a.joly@ulg.ac.be>
