@@ -80,7 +80,7 @@ Summary
 -------
 
 We solve the challenge problem by infering an undirected network by estimating partial correlation [1] for every pair of neurons. In order to increase the performance, we preprocess the data by filtering the time series and weighting the samples to take into account the number (and the intensity) of burst peaks and deal with network bursts [2].
-To achieve the best results, we asymmetrize our score matrix by trying to orientate (heuristically) the causality.
+To achieve the best results, we asymmetrize our score matrix by trying to determine (heuristically) the causality.
 
 
 Feature Selection / Extraction
@@ -124,7 +124,7 @@ See Readme.md
 Additional Comments and Observations
 ------------------------------------
 
-We will provide more detailed information in a paper we plan to submit to ECML challenge workshop.
+We will provide more detailed information in a paper that we plan to submit to ECML challenge workshop.
 
 Simple Features and Methods
 ---------------------------
