@@ -68,3 +68,42 @@ processor (> 2.5 GHz), 4 cores and sufficient disk space. On our last
 test, it took around XXX hours (with 7 process) on YYYY and XXX hours on ZZZ.
 
 The performance we obtained on normal-1 are the following XXXX.
+
+
+
+
+
+FACTSHEET
+=========
+
+Summary
+-------
+
+Feature Selection / Extraction
+------------------------------
+
+Modelling Techniques and Training
+---------------------------------
+
+Code Description
+----------------
+
+Dependencies
+------------
+
+How To Generate the Solution
+----------------------------
+
+Additional Comments and Observations
+------------------------------------
+
+Simple Features and Methods
+---------------------------
+
+Figures
+-------
+
+References
+----------
+
+
