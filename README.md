@@ -1,13 +1,17 @@
 Kaggle Connectomics
 ===================
 
-Team 'AAAGV'. 
+
 
 Contact
 -------
 
+
 - Antonio Sutera <a.sutera@ulg.ac.be>
 - Arnaud Joly <a.joly@ulg.ac.be>
+- Aaron Qiu <zqiu@ulg.ac.be>
+- Gilles Louppe <g.louppe@ulg.ac.be>
+- Vincent François <v.francois@ulg.ac.be>
 
 
 Hardware / OS
