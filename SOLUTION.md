@@ -22,29 +22,11 @@ Once the preprocessing is performed on the data, we estimate the partial correla
 
 We improve the total score by considering the 800 most important components through a PCA analysis.
 
-Code Description
-----------------
+Code description and dependencies
+---------------------------------
 
 See Readme.md
 
-Dependencies
-------------
-
-The following programs and packages were used for the contest:
-
-    - Python 2.7
-    - NumPy >= 1.6.2
-    - SciPy >= 0.11
-    - scikit-learn >= 0.14
-
-with appropriate blas and lapack binding such as MKL, accelerate or ATLAS.
-In order to test the code, we recommend you to use the Anaconda python
-distribution (https://store.continuum.io/cshop/anaconda/).
-
-How To Generate the Solution
-----------------------------
-
-See Readme.md
 
 Additional Comments and Observations
 ------------------------------------
