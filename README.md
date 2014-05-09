@@ -124,7 +124,7 @@ See Readme.md
 Additional Comments and Observations
 ------------------------------------
 
-We will provide more detailed information in a paper that we plan to submit to ECML challenge workshop.
+We will provide more detailed information in a paper that we plan to submit to the workshop dedicated to the Connectomics challenge.
 
 Simple Features and Methods
 ---------------------------
