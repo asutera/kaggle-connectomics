@@ -1,23 +1,25 @@
 Kaggle Connectomics
 ===================
 
+Team 'AAAGV'. 
+
 Contact
 -------
 
-Antonio Sutera <a.sutera@ulg.ac.be>
-Arnaud Joly <a.joly@ulg.ac.be>
+- Antonio Sutera <a.sutera@ulg.ac.be>
+- Arnaud Joly <a.joly@ulg.ac.be>
 
 
-The hardware / OS platform you used
------------------------------------
+Hardware / OS
+-------------
 
 Code ran on MacOsx 10.9.2 and Linux (version 2.6.18-194.26.1.el5
 (brewbuilder@norob.fnal.gov) (gcc version 4.1.2 20080704 (Red Hat 4.1.2-48))
 1 SMP Tue Nov 9 12:46:16 EST 2010).
 
 
-Any necessary 3rd-party software (+ installation steps)
--------------------------------------------------------
+Dependencies
+------------
 
 The following programs and packages were used for the contest:
 
@@ -37,8 +39,8 @@ How to train your model
 No model is learnt to produce the connectivity score matrix.
 
 
-How to make predictions on a new test set.
-------------------------------------------
+How to make predictions on a new test set
+-----------------------------------------
 In order to reproduce the result, you can launch the main.py file.
 The usage is the following:
 
