@@ -13,7 +13,7 @@ The hardware / OS platform you used
 
 Code ran on MacOsx 10.9.2 and Linux (version 2.6.18-194.26.1.el5
 (brewbuilder@norob.fnal.gov) (gcc version 4.1.2 20080704 (Red Hat 4.1.2-48))
-#1 SMP Tue Nov 9 12:46:16 EST 2010).
+1 SMP Tue Nov 9 12:46:16 EST 2010).
 
 
 Any necessary 3rd-party software (+ installation steps)
