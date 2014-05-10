@@ -1,7 +1,9 @@
 Kaggle Connectomics
 ===================
 
-Team AAAGC (#1). 
+https://www.kaggle.com/c/connectomics
+
+Team AAAGV (#1)
 
 Contact
 -------
