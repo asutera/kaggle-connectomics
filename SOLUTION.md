@@ -21,10 +21,10 @@ score matrix by trying to determine (heuristically) the causality.
 Feature Selection / Extraction
 ------------------------------
 
-Filering (`model/PCA.py:_preprocess`): We apply a (handmade) low-pass filter
-and a high-pass filter on the data.
+We apply on the data up to 4 filters: a low-pass filter, a high-pass filter, a hard tresholding filter (see `model/PCA.py:_preprocess` and `model/directivity.py`).
 
-Sample weighting (`model/PCA.py:_weights_fast`): For each sample, i.e. each time 
+For the partial correlation method, we apply one more a non-linear filter based on the overall neurons activity
+(`model/PCA.py:_weights_fast`): for each sample, i.e. each time 
 interval, we weight samples depending on the global neuron activity at current and 
 previous time steps, thereby filtering out very low and very high 
 global activity periods. Parameters have been optimized on normal-1 and 
@@ -40,7 +40,8 @@ matrix).  To filter out noise, the inverse of the correlation matrix is recovere
 from Principal Component Analysis (PCA) using the 800 first components (out
 of 1000). 
 
-`model/directivty.py`: TODO
+`model/directivity.py`: The directivity method try to detect variation of fluorescence signal of a neuron `j` due to a neuron `i`. Let's denote the fluorescence signal of a neuron `l` at time `t` by `x_l[t]`, this method counts the number of time that  `x_j[t+1] - x_i[t]` is in `[f_1, f_2]` with `f_1, f_2 > 0.`. 
+
 
 Both solutions are combined together through averaging. 
 
