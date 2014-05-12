@@ -33,11 +33,16 @@ some parameters optimized (on normal-1 and normal-4 datasets).
 Modelling Techniques and Training
 ---------------------------------
 
-Once preprocessing is done, partial correlations are estimated by computing
-the inverse of the correlation matrix (also known as the precision matrix). 
-To filter out noise, the inverse of the correlation matrix is recovered
+`model/PCA.py`: Once preprocessing is done, partial correlations are estimated 
+by computing the inverse of the correlation matrix (also known as the precision 
+matrix).  To filter out noise, the inverse of the correlation matrix is recovered
 from Principal Component Analysis (PCA) using the 800 first components (out
 of 1000). 
+
+`model/directivty.py`: TODO
+
+Both solutions are combined together through averaging. 
+
 
 
 Code description
