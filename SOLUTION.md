@@ -21,12 +21,12 @@ score matrix by trying to determine (heuristically) the causality.
 Feature Selection / Extraction
 ------------------------------
 
-The data were filtered using a low-pass filter, a high-pass filterand and a hard tresholding filter (see `model/PCA.py:_preprocess` and `model/directivity.py`).
+The data were filtered using a low-pass filter, a high-pass filter and and a hard tresholding filter (see `model/PCA.py:_preprocess` and `model/directivity.py`).
 
 For the partial correlation method, we apply one more non-linear filter based on the overall neuron activity
 (`model/PCA.py:_weights_fast`): for each sample, i.e. each time 
 interval, we weight samples depending on the global neuron activity at current and 
-previous time steps, thereby filtering out very low and very high 
+previous time steps, thereby lowering the effect in the correlation calculation towards the end of very high 
 global activity periods. 
 
 Parameters of those filters have been optimized on normal-1 and normal-4 datasets.
