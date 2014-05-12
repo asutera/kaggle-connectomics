@@ -18,7 +18,7 @@ import numpy as np
 from PCA import make_prediction_PCA
 from directivity import make_prediction_directivity
 
-# TODO remove Cache accelerator
+# Cache accelerator may be removed to save disk space
 from sklearn.externals.joblib import Memory
 memory = Memory(cachedir="cachedir", verbose=0)
 np.loadtxt = memory.cache(np.loadtxt)
