@@ -1,51 +1,65 @@
 Solution
 ========
 
-Summary
--------
+Method
+------
 
-We solve the challenge problem by infering an undirected network by estimating partial correlation [1] for every pair of neurons. In order to increase the performance, we preprocess the data by filtering the time series and weighting the samples to take into account the number (and the intensity) of burst peaks and deal with network bursts [2].
-To achieve the best results, we asymmetrize our score matrix by trying to determine (heuristically) the causality.
+The core principle of our approach is to recover an undirected network by
+estimating partial correlations [1] for every pair of neurons. In particular,
+this approach is well-known for identifying first-order interactions (i.e.,
+direct connections in the network) from higher-order interactions (i.e.,
+indirect connections).
+
+In order to increase performance, data is preprocessed by i) filtering the
+time series and ii) re-weighting the samples to take into account the number
+(and the intensity) of burst peaks [2].
+
+As a last step, and to obtain slightly better results, we asymmetrize our
+score matrix by trying to determine (heuristically) the causality.
 
 
 Feature Selection / Extraction
 ------------------------------
 
-Filering: We apply a (handmade) low-pass filter and a high-pass filter on the data.
-Sample weighting : We look after the sum of values for the current time step and the previous time step and we weighted the current step value by a coefficient depending on the calculated sum and some parameters optimized (on normal-1 and normal-4 datasets).  
+Filering (`model/PCA.py:_preprocess`): We apply a (handmade) low-pass filter
+and a high-pass filter on the data.
+
+Sample weighting (`model/PCA.py:_weights_fast`): We look after the sum of
+values for the current time step and the previous time step and we weighted
+the current step value by a coefficient depending on the calculated sum and
+some parameters optimized (on normal-1 and normal-4 datasets).
 
 
 Modelling Techniques and Training
 ---------------------------------
 
-Once the preprocessing is performed on the data, we estimate the partial correlation by computing the inverse of the correlation matrix, i.e. the precision matrix.
+Once preprocessing is done, partial correlations are estimated by computing
+the inverse of the correlation matrix (also known as the precision matrix). 
+To filter out noise, the inverse of the correlation matrix is recovered
+from Principal Component Analysis (PCA) using the 800 first components (out
+of 1000). 
 
-We improve the total score by considering the 800 most important components through a PCA analysis.
 
-Code description and dependencies
----------------------------------
+Code description
+----------------
 
-See Readme.md
+See `README.md`.
 
 
 Additional Comments and Observations
 ------------------------------------
 
-We will provide more detailed information in a paper that we plan to submit to the workshop dedicated to the Connectomics challenge.
+We will provide motivation and details in a paper that we plan to submit 
+to the Neural Connectomics Workshop organized at ECML'14.
 
-Simple Features and Methods
----------------------------
-
-----
-
-Figures
--------
-
-----
 
 References
 ----------
 
-[1] De La Fuente, A., Bing, N., Hoeschele, I., & Mendes, P. (2004). Discovery of meaningful associations in genomic data using partial correlation coefficients. Bioinformatics, 20(18), 3565-3574.
+[1] De La Fuente, A., Bing, N., Hoeschele, I., & Mendes, P. (2004). 
+    Discovery of meaningful associations in genomic data using partial 
+    correlation coefficients. Bioinformatics, 20(18), 3565-3574.
 
-[2] Stetter, O., Battaglia, D., Soriano, J., & Geisel, T. (2012). Model-free reconstruction of excitatory neuronal connectivity from calcium imaging signals. PLoS computational biology, 8(8), e1002653.
+[2] Stetter, O., Battaglia, D., Soriano, J., & Geisel, T. (2012). 
+    Model-free reconstruction of excitatory neuronal connectivity from 
+    calcium imaging signals. PLoS computational biology, 8(8), e1002653.
