@@ -24,10 +24,7 @@ Feature Selection / Extraction
 Filering (`model/PCA.py:_preprocess`): We apply a (handmade) low-pass filter
 and a high-pass filter on the data.
 
-Sample weighting (`model/PCA.py:_weights_fast`): We look after the sum of
-values for the current time step and the previous time step and we weighted
-the current step value by a coefficient depending on the calculated sum and
-some parameters optimized (on normal-1 and normal-4 datasets).
+Sample weighting (`model/PCA.py:_weights_fast`): For each sample, i.e. each time interval, we weight samples depending on the neuron activity at current and previous time steps. Parameters have been optimized on normal-1 and normal-4 datasets.
 
 
 Modelling Techniques and Training
