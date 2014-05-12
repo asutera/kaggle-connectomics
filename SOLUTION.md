@@ -23,7 +23,7 @@ Feature Selection / Extraction
 
 The data were filtered using a low-pass filter, a high-pass filterand and a hard tresholding filter (see `model/PCA.py:_preprocess` and `model/directivity.py`).
 
-For the partial correlation method, we apply one more a non-linear filter based on the overall neurons activity
+For the partial correlation method, we apply one more non-linear filter based on the overall neuron activity
 (`model/PCA.py:_weights_fast`): for each sample, i.e. each time 
 interval, we weight samples depending on the global neuron activity at current and 
 previous time steps, thereby filtering out very low and very high 
