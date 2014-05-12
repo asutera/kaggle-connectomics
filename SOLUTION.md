@@ -30,10 +30,6 @@ previous time steps, thereby lowering the effect of the end of high global burst
 
 Parameters of those filters have been optimized on normal-1 and normal-4 datasets.
 
-In addition, some causal information (directivity of the links) were retrieved from the data by comparing activity of each couple of neurons between two subsequent time steps  (see `model/directivity.py`).
-
-
-
 Modeling Techniques and Training
 ---------------------------------
 
@@ -43,7 +39,7 @@ matrix).  To filter out noise, the inverse of the correlation matrix is recovere
 from Principal Component Analysis (PCA) using the 800 first components (out
 of 1000). 
 
-`model/directivity.py`: The directivity method tries to detect variation of fluorescence signal of a neuron `j` due to a neuron `i`. Let us denote the fluorescence signal of a neuron `l` at time `t` by `x_l[t]`, this method counts the number of time that  `x_j[t+1] - x_i[t]` is in `[f_1, f_2]` where `f_1` and `f_2` are parameter of the method. 
+`model/directivity.py`: Some causal information (directivity of the links) were retrieved from the data by comparing activity of each couple of neurons between two subsequent time steps. The directivity method tries to detect variation of fluorescence signal of a neuron `j` due to a neuron `i`. Let us denote the fluorescence signal of a neuron `l` at time `t` by `x_l[t]`, this method counts the number of time that  `x_j[t+1] - x_i[t]` is in `[f_1, f_2]` where `f_1` and `f_2` are parameter of the method. 
 
 Both solutions are combined together through averaging. 
 
