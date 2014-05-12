@@ -41,7 +41,7 @@ matrix).  To filter out noise, the inverse of the correlation matrix is recovere
 from Principal Component Analysis (PCA) using the 800 first components (out
 of 1000). 
 
-`model/directivity.py`: The directivity method try to detect variation of fluorescence signal of a neuron `j` due to a neuron `i`. Let's denote the fluorescence signal of a neuron `l` at time `t` by `x_l[t]`, this method counts the number of time that  `x_j[t+1] - x_i[t]` is in `[f_1, f_2]` with `f_1, f_2 > 0.`. 
+`model/directivity.py`: The directivity method tries to detect variation of fluorescence signal of a neuron `j` due to a neuron `i`. Let's denote the fluorescence signal of a neuron `l` at time `t` by `x_l[t]`, this method counts the number of time that  `x_j[t+1] - x_i[t]` is in `[f_1, f_2]` with `f_1, f_2 > 0.`. 
 
 
 Both solutions are combined together through averaging. 
