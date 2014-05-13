@@ -51,7 +51,7 @@ def make_prediction_PCA(X):
 
     weight = 0
 
-    # Loop over all treshold and methods to apply
+    # Loop over all the tresholds and methods
     for threshold in t:
         for filtering in ['sym', 'future', 'past', 'alt']:
             print(threshold, filtering)
@@ -84,7 +84,7 @@ def make_prediction_PCA(X):
 def _preprocess(X, filtering='sym', threshold=0.11):
     """Filter data with a cascade of filters
 
-    There is 4 filter:
+    There are 4 filters:
         1/ smoothing filter (see filtering argument)
         2/ hard thresholding filter (see threshold argument)
         3/ non-linear filter: x[i] = x[i] ** 0.9
@@ -105,7 +105,7 @@ def _preprocess(X, filtering='sym', threshold=0.11):
 
     threshold : float, (default=0.11)
         Treshold value for hard tresholding filter:
-        x_new[i] = x[i] if x[i] >= threshold else 0.
+        x_new[i] = x[i] if x[i] >= threshold, else 0.
 
     Returns
     -------
