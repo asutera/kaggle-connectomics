@@ -57,7 +57,7 @@ def make_prediction_directivity(X, threshold=0.12, n_jobs=1):
         Fluorescence signals
 
     threshold : float, (default=0.11)
-        Treshold value for hard tresholding filter:
+        Threshold value for hard thresholding filter:
         x_new[i] = x[i] if x[i] >= threshold else 0.
 
     n_jobs : integer, optional (default=1)
