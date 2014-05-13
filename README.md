@@ -66,7 +66,7 @@ To run the script, you will need a machine with at least 8GB RAM, a fast
 processor (> 2.5 GHz), 4 cores and sufficient disk space. On our last
 test, it took around XXX hours (with 7 process) on YYYY and +-2 hours on small-1.
 
-The performance we obtained on normal-1 are the following:
+The performance obtained on normal-1 and small-1 are the following:
 
     On normal-1: 
     On small-1: 0.71027913026472989
