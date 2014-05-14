@@ -64,11 +64,11 @@ For example on the "test" dataset, you would use the following command:
 
 To run the script, you will need a machine with at least 8GB RAM, a fast
 processor (> 2.5 GHz), 4 cores and sufficient disk space. On our last
-test, it took around XXX hours (with 7 process) on YYYY and +-2 hours on small-1.
+test, it took around 10 hours (with 7 process) on normal-1 and +-2 hours on small-1.
 
 The performance obtained on normal-1 and small-1 are the following:
 
-    On normal-1: 
+    On normal-1: 0.94356018640593564
     On small-1: 0.71027913026472989
      
 Note that all parameters have been optimized for a big dataset, i.e. 1000 neurons, and it explains the poor result on small-1.
