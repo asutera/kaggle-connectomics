@@ -15,8 +15,7 @@ from itertools import product
 
 import numpy as np
 
-from PCA import make_simple_inference, make_tuned_inference
- 
+from PCA import make_prediction_PCA
 from directivity import make_prediction_directivity
 
 # Cache accelerator may be removed to save disk space
@@ -37,12 +36,6 @@ if __name__ == "__main__":
                         help='Path of the output/prediction file')
     parser.add_argument('-n', '--network', type=str, required=True,
                         help='Network name')
-    parser.add_argument('-m', '--method', type=str, required=False, default = 'simple',
-                        help='Simplified or tuned method?')
-    parser.add_argument('-d', '--directivity', type=int, required=False, default = 0,
-                        help='Take into account information about directivity?')
-    parser.add_argument('-s', '--submission', type=int, required=False, default = 0,
-                        help='Submission file?')
     args = vars(parser.parse_args())
 
     # Loading data
@@ -53,30 +46,23 @@ if __name__ == "__main__":
     # pos = np.loadtxt(args["position"], delimiter=",")
 
     ## Producing the prediction matrix ##
+    print('Infer a network with PCA...')
+    y_pca = make_prediction_PCA(X)
 
-    if args["method"] == 'tuned':
-        y_pca = make_tuned_inference(X)
-    else:
-        y_pca = make_simple_inference(X)
+    print('Infer a network with DIR...')
+    y_directivity = make_prediction_directivity(X)
 
-    if bool(args["directivity"]):
-        print('Using information about directivity...')
-        y_directivity = make_prediction_directivity(X)
-        # Perform stacking
-        score = 0.997 * y_pca + 0.003 * y_directivity
-    else:
-        score = y_pca 
+    # Perform stacking
+    score = 0.997 * y_pca + 0.003 * y_directivity
 
+    # Generate the submission file ##
+    with open(args["output"], 'w') as fname:
+        fname.write("NET_neuronI_neuronJ,Strength\n")
 
-    if bool(args["submission"]):
-        # Generate the submission file ##
-        with open(args["output"], 'w') as fname:
-            fname.write("NET_neuronI_neuronJ,Strength\n")
+        for i, j in product(range(score.shape[0]), range(score.shape[1])):
+            line = "{0}_{1}_{2},{3}\n".format(args["network"], i + 1, j + 1,
+                                              score[i, j])
+            fname.write(line)
 
-            for i, j in product(range(score.shape[0]), range(score.shape[1])):
-                line = "{0}_{1}_{2},{3}\n".format(args["network"], i + 1, j + 1,
-                                                  score[i, j])
-                fname.write(line)
-
-        print("Infered connectivity score is saved at %s"
-              % args["output"])
+    print("Infered connectivity score is saved at %s"
+          % args["output"])
