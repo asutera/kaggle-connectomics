@@ -23,7 +23,7 @@ The following programs and packages were used for the contest:
     - Python 2.7
     - NumPy >= 1.6.2
     - SciPy >= 0.11
-    - scikit-learn >= 0.14
+    - scikit-learn == master branch (last update, the hash commit was `8d04380d474723467b5a717328efd0c9fc5bd898`)
 
 with appropriate blas and lapack binding such as MKL, accelerate or ATLAS.
 In order to test the code, we recommend you to use the Anaconda python
