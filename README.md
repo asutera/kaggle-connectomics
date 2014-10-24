@@ -1,6 +1,11 @@
 Kaggle Connectomics
 ===================
 
+If you use this code, please cite :
+Sutera, A., Joly, A., François-Lavet, V., Qiu, Z. A., Louppe, G., Ernst, D., & Geurts, P. (2014). Simple connectome inference from partial correlation statistics in calcium imaging. JMLR: Workshop and Conference Proceedings of ECML2014 (Nancy).
+
+If you are interested in more explanations, have a look at http://orbi.ulg.ac.be/handle/2268/169767 (Mirror: http://arxiv.org/abs/1406.7865).
+
 https://www.kaggle.com/c/connectomics
 
 Team AAAGV (#1)
