@@ -16,7 +16,7 @@ from itertools import product
 import numpy as np
 
 from PCA import make_simple_inference, make_tuned_inference
- 
+
 from directivity import make_prediction_directivity
 
 # Cache accelerator may be removed to save disk space
@@ -37,12 +37,14 @@ if __name__ == "__main__":
                         help='Path of the output/prediction file')
     parser.add_argument('-n', '--network', type=str, required=True,
                         help='Network name')
-    parser.add_argument('-m', '--method', type=str, required=False, default = 'simple',
-                        help='Simplified or tuned method?')
-    parser.add_argument('-d', '--directivity', type=int, required=False, default = 0,
-                        help='Take into account information about directivity?')
-    parser.add_argument('-s', '--submission', type=int, required=False, default = 0,
-                        help='Submission file?')
+    parser.add_argument('-m', '--method', type=str, required=False,
+                        default='simple', help='Simplified or tuned method?')
+    parser.add_argument('-d', '--directivity', type=int, required=False,
+                        default=0,
+                        help='''Take into account information about
+                                directivity?''')
+    parser.add_argument('-s', '--submission', type=int, required=False,
+                        default=0, help='Submission file?')
     args = vars(parser.parse_args())
 
     # Loading data
@@ -52,7 +54,7 @@ if __name__ == "__main__":
     X = np.asfortranarray(X, dtype=np.float32)
     # pos = np.loadtxt(args["position"], delimiter=",")
 
-    ## Producing the prediction matrix ##
+    # # Producing the prediction matrix ##
 
     if args["method"] == 'tuned':
         y_pca = make_tuned_inference(X)
@@ -65,8 +67,7 @@ if __name__ == "__main__":
         # Perform stacking
         score = 0.997 * y_pca + 0.003 * y_directivity
     else:
-        score = y_pca 
-
+        score = y_pca
 
     if bool(args["submission"]):
         # Generate the submission file ##
@@ -74,8 +75,8 @@ if __name__ == "__main__":
             fname.write("NET_neuronI_neuronJ,Strength\n")
 
             for i, j in product(range(score.shape[0]), range(score.shape[1])):
-                line = "{0}_{1}_{2},{3}\n".format(args["network"], i + 1, j + 1,
-                                                  score[i, j])
+                line = "{0}_{1}_{2},{3}\n".format(args["network"],
+                                                  i + 1, j + 1, score[i, j])
                 fname.write(line)
 
         print("Infered connectivity score is saved at %s"
