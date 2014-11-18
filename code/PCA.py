@@ -14,26 +14,31 @@ from sklearn.decomposition import PCA
 from utils import scale
 
 
-###########################################
-######### SIMPLIFIED METHOD ###############
-###########################################
+# #########################################
+# ####### SIMPLIFIED METHOD ###############
+# #########################################
 
 def f1(X):
     return X + np.roll(X, -1, axis=0) + np.roll(X, 1, axis=0)
 
+
 def f2(X):
-    return X + np.roll(X, 1, axis=0) + 0.8 * np.roll(X, 2, axis=0) + 0.4 * np.roll(X, 3, axis=0)
+    return (X + np.roll(X, 1, axis=0) + 0.8 * np.roll(X, 2, axis=0)
+            + 0.4 * np.roll(X, 3, axis=0))
+
 
 def g(X):
-    return np.diff(X, axis=0) 
+    return np.diff(X, axis=0)
 
-def h(X, threshold = 0.11):
+
+def h(X, threshold=0.11):
     threshold1 = X < threshold * 1
     threshold2 = X >= threshold * 1
     X_new = np.zeros_like(X)
     X_new[threshold1] = 0
     X_new[threshold2] = X[threshold2]
     return X_new
+
 
 def w(X):
     X_new = X
@@ -48,7 +53,8 @@ def w(X):
             X_new[i, :] = 1
     return X_new
 
-def simple_filter(X, LP = 'f1', threshold = 0.11, weights = True):
+
+def simple_filter(X, LP='f1', threshold=0.11, weights=True):
     if LP == 'f1':
         X = f1(X)
     elif LP == 'f2':
@@ -59,9 +65,10 @@ def simple_filter(X, LP = 'f1', threshold = 0.11, weights = True):
     X = h(X)
     if weights:
         X = w(X)
-    return X 
+    return X
 
-def tuned_filter(X, LP = 'f1', threshold = 0.11, weights = True):
+
+def tuned_filter(X, LP='f1', threshold=0.11, weights=True):
     if LP == 'f1':
         X = f1(X)
     elif LP == 'f2':
@@ -78,9 +85,11 @@ def tuned_filter(X, LP = 'f1', threshold = 0.11, weights = True):
 
     if weights:
         X = w_star(X)
-    return X 
+    return X
+
 
 def make_simple_inference(X):
+
     print('Making simple inference...')
 
     t = [0.100, 0.101, 0.102, 0.103, 0.104, 0.105, 0.106, 0.107, 0.108, 0.109,
@@ -101,13 +110,12 @@ def make_simple_inference(X):
     n_samples, n_nodes = X.shape
     y_pred_agg = np.zeros((n_nodes, n_nodes))
 
-
     for threshold in t:
         for filtering in ["f1", "f2"]:
 
             print('Current: %0.3f, %s' % (threshold, filtering))
 
-            X_new = simple_filter(X, LP = filtering, threshold = t, weights = True)
+            X_new = simple_filter(X, LP=filtering, threshold=t, weights=True)
             pca = PCA(whiten=True, n_components=int(0.8 * n_nodes)).fit(X_new)
             y_pred = - pca.get_precision()
 
@@ -120,20 +128,26 @@ def make_simple_inference(X):
 
     return scale(y_pred_agg / weight)
 
-###########################################
-############# TUNED METHOD ################
-###########################################
+# #########################################
+# ########### TUNED METHOD ################
+# #########################################
+
 
 def f3(X):
-    return X + np.roll(X, -1, axis=0) + np.roll(X, -2, axis=0) + np.roll(X, 1, axis=0)
+    return (X + np.roll(X, -1, axis=0) + np.roll(X, -2, axis=0)
+            + np.roll(X, 1, axis=0))
+
 
 def f4(X):
-    return X + np.roll(X, -1, axis=0) + np.roll(X, -2, axis=0) + np.roll(X, -3, axis=0)
+    return (X + np.roll(X, -1, axis=0) + np.roll(X, -2, axis=0)
+            + np.roll(X, -3, axis=0))
+
 
 def r(X):
-    return X**0.9 
+    return X**0.9
 
-def w_star(X, filtering = "f1"):
+
+def w_star(X, filtering="f1"):
 
     X_new = X
 
@@ -150,13 +164,16 @@ def w_star(X, filtering = "f1"):
         if filtering == "f1":
 
             if Sum4[i] > 0 and r < 0.23 and r > 0.05:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.9
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.9)
 
             elif Sum4[i] > 0 and r < 0.75:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.6
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.6)
 
             elif Sum4[i] != 0:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.4
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.4)
 
             else:
                 X_new[i, :] = 1
@@ -164,14 +181,17 @@ def w_star(X, filtering = "f1"):
         elif filtering == "f2":
 
             if Sum4[i] > 0 and r < 0.23 and r > 0.05:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.9
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.9)
 
             elif Sum4[i] > 0 and r < 0.75:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.6
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.6)
 
             elif Sum4[i] != 0:
 
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.4
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.4)
 
             else:
                 X_new[i, :] = 1
@@ -179,13 +199,16 @@ def w_star(X, filtering = "f1"):
         elif filtering == "f3":
 
             if Sum4[i] > 0 and r < 0.22 and r > 0.04:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.9
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.9)
 
             elif Sum4[i] > 0 and r < 0.75:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.7
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.7)
 
             elif Sum4[i] != 0:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.5
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.5)
 
             else:
                 X_new[i, :] = 1
@@ -193,21 +216,25 @@ def w_star(X, filtering = "f1"):
         elif filtering == "f4":
 
             if Sum4[i] > 0 and r < 0.22 and r > 0.08:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.9
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.9)
 
             elif Sum4[i] != 0:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.5
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.5)
 
             else:
                 X_new[i, :] = 1
 
         else:
             if Sum4[i] != 0:
-                X_new[i, :] = ((X_new[i, :] + 1) ** (1 + (1. / Sum4[i]))) ** 1.6
+                X_new[i, :] = (((X_new[i, :] + 1)
+                                ** (1 + (1. / Sum4[i]))) ** 1.6)
             else:
                 X_new[i, :] = 1
 
     return X_new
+
 
 def make_tuned_inference(X):
     print('Making tuned inference...')
@@ -230,12 +257,11 @@ def make_tuned_inference(X):
     n_samples, n_nodes = X.shape
     y_pred_agg = np.zeros((n_nodes, n_nodes))
 
-
     for threshold in t:
         for filtering in ["f1", "f2", "f3", "f4"]:
             print('Current: %0.3f, %s' % (threshold, filtering))
 
-            X_new = tuned_filter(X, LP = filtering, threshold = t, weights = True)
+            X_new = tuned_filter(X, LP=filtering, threshold=t, weights=True)
             pca = PCA(whiten=True, n_components=int(0.8 * n_nodes)).fit(X_new)
             y_pred = - pca.get_precision()
 
