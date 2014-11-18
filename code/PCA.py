@@ -271,10 +271,10 @@ def make_tuned_inference(X):
             elif filtering == 'f2':
                 y_pred_agg += y_pred * 0.9
                 weight += 0.9
-            elif filtering == 'future':
+            elif filtering == 'f3':
                 y_pred_agg += y_pred * 0.01
                 weight += 0.01
-            elif filtering == 'past':
+            elif filtering == 'f4':
                 y_pred_agg += y_pred * 0.7
                 weight += 0.7
 
